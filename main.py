@@ -1,7 +1,7 @@
 from flask import render_template, redirect, request, url_for, flash
 from flask_login import login_user, logout_user
 from app import app, db
-from app.models import User, Cliente, Grupo, Categoria, Endereco, Assinante
+from app.models import User, Cliente, Grupo, Categoria, Endereco, Assinante, Ponto
 from werkzeug.security import generate_password_hash
 
 @app.route('/')
@@ -274,15 +274,15 @@ def add_assinante():
     categorias = Categoria.query.all()
     enderecos = Endereco.query.all()
     if request.method == 'POST':
-        grupo = request.form['grupo']
-        categoria = request.form['categoria']
-        endereco = request.form['endereco']
+        grupo_id = request.form['grupo']
+        categoria_id = request.form['categoria']
+        endereco_id = request.form['endereco']
         codigo_assinante = request.form['codigo_assinante']
         nome = request.form['nome']
         telefone = request.form['telefone']
         celular = request.form['celular']
         email = request.form['email']
-        assinante = Assinante(grupo, categoria, endereco, codigo_assinante, nome, telefone, celular, email)
+        assinante = Assinante(grupo_id, categoria_id, endereco_id, codigo_assinante, nome, telefone, celular, email)
         db.session.add(assinante)
         db.session.commit()
         flash('Assinante adicionado com sucesso!')
@@ -333,7 +333,73 @@ def delete_assinante(assinante_id):
         return redirect(url_for('assinante'))
     return render_template('assinante.html', assinantes=assinantes)
 
-                                                 
+
+
+@app.route('/ponto')
+def ponto():
+    assinantes = Assinante.query.all()
+    pontos = Ponto.query.all()
+    return render_template('ponto.html', pontos=pontos)
+    
+    
+@app.route('/add_ponto', methods=['GET', 'POST'])
+def add_ponto():
+    assinantes = Assinante.query.all()
+    if request.method == 'POST':
+        dia_vencimento = request.form['dia_vencimento']
+        assinante_id = request.form['assinante_id']
+        nome = request.form['nome']
+        card = request.form['card']
+        nds = request.form['nds']
+        cartao_sky = request.form['cartao_sky']
+        valor = request.form['valor']
+        mes = request.form['mes']
+        status = request.form['status']
+        ponto = Ponto(dia_vencimento, assinante_id, nome, card, nds, cartao_sky, valor, mes, status)
+        db.session.add(ponto)
+        db.session.commit()
+        flash('Ponto adicionado com sucesso!')
+        return redirect(url_for('ponto'))
+    return render_template('add_ponto.html', assinantes=assinantes)
+
+
+
+@app.route('/edit_ponto/<int:ponto_id>', methods=['GET', 'POST'])
+def edit_ponto(ponto_id):
+    ponto = Ponto.query.get_or_404(ponto_id)
+    pontos = Ponto.query.all()
+    assinantes = Assinante.query.all()
+    if request.method == 'POST':
+        ponto.dia_vencimento = request.form['dia_vencimento']
+        ponto.assinante_id = request.form['assinante_id']
+        ponto.nome = request.form['nome']
+        ponto.card = request.form['card']
+        ponto.nds = request.form['nds']
+        ponto.cartao_sky = request.form['cartao_sky']
+        ponto.valor = request.form['valor']
+        ponto.mes = request.form['mes']
+        ponto.status = request.form['status']
+        db.session.commit()
+        flash('Ponto alterado com sucesso!')
+        return redirect(url_for('ponto'))
+    else:
+        enderecos = Endereco.query.all()
+        return render_template('edit_ponto.html', ponto=ponto, pontos=pontos, assinantes=assinantes)
+
+
+
+@app.route('/delete_ponto/<int:ponto_id>', methods=['GET', 'POST'])
+def delete_ponto(ponto_id):
+    pontos = Ponto.query.all()
+    if request.method == 'GET':
+        ponto = Ponto.query.get_or_404(ponto_id)
+        db.session.delete(ponto)
+        db.session.commit()
+        flash('Ponto apagado com sucesso!')
+        return redirect(url_for('ponto'))
+    return render_template('ponto.html', pontos=pontos)
+
+        
 @app.route('/logout')
 def logout():
     logout_user()

@@ -90,7 +90,7 @@ class Assinante(db.Model):
     categoria_id = db.Column(db.Integer, db.ForeignKey('categoria.id'),
         nullable=False)
     endereco_id = db.Column(db.Integer, db.ForeignKey('endereco.id'),
-        nullable=False)
+        nullable=False, unique=True)
     codigo_assinante = db.Column(db.String(100), nullable=False)
     nome = db.Column(db.String(100), nullable=False)
     telefone = db.Column(db.String(20))
@@ -111,5 +111,32 @@ class Assinante(db.Model):
         return '{}'.format(self.nome)
     
 
+class Ponto(db.Model):
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    dia_vencimento = db.Column(db.Integer)
+    assinante_id = db.Column(db.Integer, db.ForeignKey('assinante.id'),
+        nullable=False)
+    nome = db.Column(db.String(100))
+    card = db.Column(db.String(100))
+    nds = db.Column(db.String(100))
+    cartao_sky = db.Column(db.String(100))
+    valor = db.Column(db.Float)
+    mes = db.Column(db.String(20))
+    status = db.Column(db.String(10), nullable=False)
+    
+    def __init__(self, dia_vencimento, assinante_id, nome, card, nds, cartao_sky, valor, mes, status):
+        self.dia_vencimento = dia_vencimento
+        self.assinante_id = assinante_id
+        self.nome = nome
+        self.card = card
+        self.nds = nds
+        self.cartao_sky = cartao_sky
+        self.valor = valor
+        self.mes = mes
+        self.status = status
+        
+    def __repr__(self):
+        return '{}'.format(self.nome)
+    
         
 db.create_all()

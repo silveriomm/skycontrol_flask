@@ -1,0 +1,79 @@
+﻿{% extends "base.html" %}
+{% block content %}
+<h1 class="title has-text-centered">Adicionar Ponto</h1>
+<div class="columns is-centered">
+<form style="width:540px;" method="POST" action="">
+    <div class="field">
+      <label class="label">Dia vencimento</label>
+      <div class="control">
+        <input class="input is-small" name="dia_vencimento" type="text" value="{{ponto.dia_vencimento}}">
+      </div>
+    </div>
+    <label class="label">Assinante</label>
+    <div class="select is-small">
+      <select name="assinante_id">
+      {% for assinante in assinantes %}
+        <option value="{{assinante.id}}">{{assinante.codigo_assinante}}</option>
+      {% endfor %}
+      </select>
+    </div>
+    <div class="field">
+      <label class="label">Nome</label>
+      <div class="control">
+        <input class="input is-small" name="nome" type="text" value="{{ponto.nome}}">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">CARD</label>
+      <div class="control">
+        <input class="input is-small" name="card" type="text" value="{{ponto.card}}">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">NDS</label>
+      <div class="control">
+        <input class="input is-small" name="nds" type="text" value="{{ponto.nds}}">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Nº cartão Sky</label>
+      <div class="control">
+        <input class="input is-small" name="cartao_sky" type="text" value="{{ponto.cartao_sky}}">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Valor</label>
+      <div class="control">
+        <input class="input is-small" name="valor" type="text" value="{{ponto.valor}}">
+      </div>
+    </div>
+    <label class="label">Mês</label>
+    <div class="select is-small">
+      <select name="mes">
+        <option value="janeiro">Janeiro</option>
+        <option value="fevereiro">Fevereiro</option>
+        <option value="março">Março</option>
+        <option value="abril">Abril</option>
+        <option value="maio">Maio</option>
+        <option value="junho">Junho</option>
+        <option value="julho">Julho</option>
+        <option value="agosto">Agosto</option>
+        <option value="setembro">Setembro</option>
+        <option value="outubro">Outubro</option>
+        <option value="novembro">Novembro</option>
+        <option value="dezembro">Dezembro</option>
+      </select>
+    </div>
+    <label class="label">Pago</label>
+    <div class="select is-small">
+      <select name="status">
+        <option value="sim">Sim</option>
+        <option value="não">Não</option>
+      </select>
+    </div>
+    <div class="control">
+        <button class="button is-success">Salvar</button>
+    </div>
+</form>
+</div>
+{% endblock %}
