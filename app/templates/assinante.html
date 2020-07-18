@@ -1,0 +1,88 @@
+﻿{% extends "base.html" %}
+
+{% block head%}
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script type = "text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    
+    <!-- Datatable -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+    <script type = "text/javascript"  src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script type = "text/javascript"  src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script type = "text/javascript"  src="https://cdn.datatables.net/plug-ins/1.10.15/dataRender/datetime.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.21/i18n/Portuguese-Brasil.json"></script>
+    <!-- JQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/datatables-bulma@1.0.1/js/dataTables.bulma.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/datatables-bulma@1.0.1/js/dataTables.bulma.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<!-- Mensagem -->
+<article class="message is-success" style="width:300px; margin-left:auto;margin-right:auto;">
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <div class="message-body">
+  {% for message in messages %}
+    <p>{{message}}</p>
+  {% endfor %}
+  </div>
+   {% endif %}
+{% endwith %}
+</article>
+<!-- Fim de Mensagem -->
+<h1 class="title has-text-centered">Lista de assinantes</h1>
+<div class="buttons">
+  <a href="{{ url_for('add_assinante') }}"><button class="button is-success"><i class="fi-swluxl-plus-solid fi-size-xl" style="color: white;"></i></button></a>
+</div>
+<div class="table-container columns is-centered">
+<table id="assinantetable" class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+<thead>
+<tr>
+    <th class="has-text-centered">Grupo</th>
+    <th class="has-text-centered">Categoria</th>
+    <th class="has-text-centered">Endereço</th>
+    <th class="has-text-centered">Cód. Assinante</th>
+    <th class="has-text-centered">Nome</th>
+    <th class="has-text-centered">Telefone</th>
+    <th class="has-text-centered">Celular</th>
+    <th class="has-text-centered">Email</th>
+    <th></th>
+    <th></th>
+</tr>
+</thead>
+<tbody>
+    {% for assinante in assinantes %}
+    <tr>
+        <td>{{assinante.grupo_id}}</td>
+        <td>{{assinante.categoria_id}}</td>
+        <td>{{assinante.endereco_id}}</td>
+        <td>{{assinante.codigo_assinante}}</td>
+        <td>{{assinante.nome}}</td>
+        <td>{{assinante.telefone}}</td>
+        <td>{{assinante.celular}}</td>
+        <td>{{assinante.email}}</td>
+        <td>
+          <a href="{{ url_for('edit_assinante', assinante_id=assinante.id) }}"><i class="fi-xnsuhl-edit-solid" style="color: orange;"></i></a>
+        </td>
+        <td>
+          <a href="{{ url_for('delete_assinante', assinante_id=assinante.id) }}"><i class="fi-xnsuhl-trash-bin" style="color: red;"></i></a>
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#assinantetable').DataTable( {
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Portuguese-Brasil.json"
+        }
+    } );
+} );
+</script>
+{% endblock %}

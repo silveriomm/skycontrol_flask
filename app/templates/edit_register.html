@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="title has-text-centered">Editar Usuario</h1>
+<div class="columns is-centered">
+<form style="width:400px;" method="POST" action="">
+    <div class="field">
+      <label class="label">Nome</label>
+      <div class="control">
+        <input class="input is-small" name="name" type="text" value="{{user.name}}">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Email</label>
+      <div class="control">
+        <input class="input is-small" name="email" type="text" value="{{user.email}}">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Senha</label>
+      <div class="control">
+        <input class="input is-small" name="password" type="password" value="{{user.password}}">
+      </div>
+    </div>
+    <div class="control">
+        <button class="button is-primary">Salvar</button>
+    </div>
+</form>
+</div>
+{% endblock %}

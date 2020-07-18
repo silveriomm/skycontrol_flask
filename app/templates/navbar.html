@@ -1,0 +1,70 @@
+﻿<nav class="navbar is-info" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+      <a href="{{ url_for('home') }}" class="navbar-item">
+        SkyControl
+      </a>
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a href="{{ url_for('home') }}" class="navbar-item">
+        Home
+      </a>
+
+      <a href="{{ url_for('cliente') }}" class="navbar-item">
+        Cliente
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Cadastros
+        </a>
+
+        <div class="navbar-dropdown">
+          <a href="{{ url_for('cliente') }}" class="navbar-item">
+            Clientes
+          </a>
+          <a href="{{ url_for('usuario') }}" class="navbar-item">
+            Usuários
+          </a>
+          <a href="{{ url_for('grupo') }}" class="navbar-item">
+            Grupos
+          </a>
+          <a href="{{ url_for('categoria') }}" class="navbar-item">
+            Categorias
+          </a>
+          <a href="{{ url_for('endereco') }}" class="navbar-item">
+            Endereços
+          </a>
+          <a href="{{ url_for('assinante') }}" class="navbar-item">
+            Assinantes
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          {% if current_user.is_authenticated %}
+          <a href="{{ url_for('logout') }}" class="button is-light">
+            Sair
+          </a>
+          {% else %}
+          <a href="{{ url_for('register') }}" class="button is-primary">
+            <strong>Registrar-se</strong>
+          </a>
+          <a href="{{ url_for('login') }}" class="button is-light">
+            Entrar
+          </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

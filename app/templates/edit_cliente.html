@@ -1,0 +1,41 @@
+﻿{% extends "base.html" %}
+{% block content %}
+<h1 class="title has-text-centered">Editar Cliente</h1>
+<div class="columns is-centered">
+<form style="width:540px;" method="POST" action="">
+    <div class="field">
+      <label class="label">Nome</label>
+      <div class="control">
+        <input class="input is-small" name="nome" type="text" value="{{cliente.nome}}">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Cidade</label>
+      <div class="control">
+        <input class="input is-small" name="cidade" type="text" value="{{cliente.cidade}}">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Telefone</label>
+      <div class="control">
+        <input class="input is-small" name="telefone" type="text" value="{{cliente.telefone}}">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Celular</label>
+      <div class="control">
+        <input class="input is-small" name="celular" type="text" value="{{cliente.celular}}">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Email</label>
+      <div class="control">
+        <input class="input is-small" name="email" type="email" value="{{cliente.email}}">
+      </div>
+    </div>
+    <div class="control">
+        <button class="button is-success">Salvar</button>
+    </div>
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+    <section class="section">
+    <div class="container">
+    {% if current_user.is_authenticated %}
+      <h1 class="title">Bem-vindo!</h1>
+      <h2 class="subtitle">
+        <strong>{{current_user.name}}</strong>
+      </h2>
+      {% endif %}
+    </div>
+  </section>
+    <figure class="image image is-3by1">
+        <img src="{{ url_for('static', filename='image/background.jpg') }}">
+    </figure>
+</div>
+{% include 'footer.html' %}
+{% endblock %}

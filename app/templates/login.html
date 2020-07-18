@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="title has-text-centered">Login</h1>
+<div class="columns is-centered">
+<form style="width:400px;" method="POST" action="">
+    <div class="field">
+      <label class="label">Email</label>
+      <div class="control">
+        <input class="input is-small" name="email" type="email">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Senha</label>
+      <div class="control">
+        <input class="input is-small" name="password" type="password">
+      </div>
+    </div>
+    <div class="control">
+        <button class="button is-primary">Entrar</button>
+    </div>
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+﻿{% extends "base.html" %}
+{% block content %}
+<h1 class="title has-text-centered">Editar Assinante</h1>
+<div class="columns is-centered">
+<form style="width:540px;" method="POST" action="">
+    <label class="label">Grupo</label>
+    <div class="select is-small">
+      <select name="grupo">
+      {% for grupo in grupos %}
+        <option value="{{grupo.id}}">{{grupo.nome}}</option>
+      {% endfor %}
+      </select>
+    </div>
+    <label class="label">Categoria</label>
+    <div class="select is-small">
+      <select name="categoria">
+      {% for categoria in categorias %}
+        <option value="{{categoria.id}}">{{categoria.nome}}</option>
+      {% endfor %}
+      </select>
+    </div>
+    <label class="label">Endereço</label>
+    <div class="select is-small">
+      <select name="endereco">
+      {% for endereco in enderecos %}
+        <option value="{{endereco.id}}">{{endereco.endereco}}</option>
+      {% endfor %}
+      </select>
+    </div>
+    <div class="field">
+      <label class="label">Cód. Assinante</label>
+      <div class="control">
+        <input class="input is-small" name="codigo_assinante" type="text" value="{{assinante.codigo_assinante}}">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Nome</label>
+      <div class="control">
+        <input class="input is-small" name="nome" type="text" value="{{assinante.nome}}">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Telefone</label>
+      <div class="control">
+        <input class="input is-small" name="telefone" type="text" value="{{assinante.telefone}}">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Celular</label>
+      <div class="control">
+        <input class="input is-small" name="celular" type="text" value="{{assinante.celular}}">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Email</label>
+      <div class="control">
+        <input class="input is-small" name="email" type="email" value="{{assinante.email}}">
+      </div>
+    </div>
+    <div class="control">
+        <button class="button is-success">Salvar</button>
+    </div>
+</form>
+</div>
+{% endblock %}
