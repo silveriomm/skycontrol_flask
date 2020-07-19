@@ -57,9 +57,9 @@
 <tbody>
     {% for assinante in assinantes %}
     <tr>
-        <td>{{assinante.grupo_id}}</td>
-        <td>{{assinante.categoria_id}}</td>
-        <td>{{assinante.endereco_id}}</td>
+        <td>{{assinante.grupo.nome}}</td>
+        <td>{{assinante.categoria.nome}}</td>
+        <td>{{assinante.endereco.endereco}}</td>
         <td>{{assinante.codigo_assinante}}</td>
         <td>{{assinante.nome}}</td>
         <td>{{assinante.telefone}}</td>

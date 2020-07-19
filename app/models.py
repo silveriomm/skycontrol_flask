@@ -43,6 +43,7 @@ class Cliente(db.Model):
 class Grupo(db.Model):
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     nome = db.Column(db.String(100))
+    grupos = db.relationship('Assinante', backref='grupo', cascade="all,delete")
     
     def __init__(self, nome):
         self.nome = nome
@@ -53,6 +54,7 @@ class Grupo(db.Model):
 class Categoria(db.Model):
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     nome = db.Column(db.String(100))
+    categorias = db.relationship('Assinante', backref='categoria', cascade="all,delete")
     
     def __init__(self, nome):
         self.nome = nome
@@ -69,6 +71,7 @@ class Endereco(db.Model):
     cidade = db.Column(db.String(100))
     estado = db.Column(db.String(2))
     cep = db.Column(db.String(10))
+    enderecos = db.relationship('Assinante', backref='endereco', cascade="all,delete")
     
     
     def __init__(self, endereco, numero, bairro, cidade, estado, cep):
@@ -96,6 +99,7 @@ class Assinante(db.Model):
     telefone = db.Column(db.String(20))
     celular = db.Column(db.String(20))
     email = db.Column(db.String(150))
+    assinantes = db.relationship('Ponto', backref='assinante', cascade="all,delete")
     
     def __init__(self, grupo_id, categoria_id, endereco_id, codigo_assinante, nome, telefone, celular, email):
         self.grupo_id = grupo_id

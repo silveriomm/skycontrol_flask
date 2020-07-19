@@ -59,7 +59,7 @@
     {% for ponto in pontos %}
     <tr>
         <td>{{ponto.dia_vencimento}}</td>
-        <td>{{ponto.assinante_id}}</td>
+        <td>{{ponto.assinante.codigo_assinante}}</td>
         <td>{{ponto.nome}}</td>
         <td>{{ponto.card}}</td>
         <td>{{ponto.nds}}</td>
